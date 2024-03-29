@@ -11,40 +11,36 @@ services:
             POSTGRES_DB: ${DB_NAME}
             POSTGRES_HOST: ${DB_HOST}
             POSTGRES_PORT: ${DB_PORT}
-        container_name: symfony-db
+        container_name: reservation-db
         volumes:
             - db_app:/var/lib/postgresql/data
         networks:
-            - symfony_app
+            - reservation_api
     php:
         build:
             context: ./php
             args:
                 TIMEZONE: ${TIMEZONE}
         volumes:
-            - ../:/var/www/symfony:cached
-            - symfony_app_var:/var/www/symfony/var
-            - symfony_app_vendor:/var/www/symfony/vendor
+            - ../:/var/www/html:cached
         networks:
-            - symfony_app
+            - reservation_api
+        depends_on:
+            - db
     nginx:
         build:
             context: ./nginx
         volumes:
-            - ../:/var/www/symfony:cached
-            - symfony_app_var:/var/www/symfony/var
-            - symfony_app_vendor:/var/www/symfony/vendor
+            - ../:/var/www/html:cached
         ports:
             - 80:80
         networks:
-            - symfony_app
+            - reservation_api
         env_file:
             - .env.nginx.local
 
 volumes:
-    symfony_app_var:
-    symfony_app_vendor:
     db_app:
 
 networks:
-    symfony_app:
+    reservation_api:

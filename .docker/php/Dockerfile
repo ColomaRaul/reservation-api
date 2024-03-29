@@ -36,4 +36,4 @@ RUN mkdir -p /srv/app/var/cache /srv/app/var/log 																&&	\
 	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX /srv/app/var
 
 
-WORKDIR /var/www
+WORKDIR /var/www/

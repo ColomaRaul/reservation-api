@@ -10,3 +10,6 @@ down:
 
 bash:
 	cd .docker && docker-compose exec php sh
+
+unit:
+	cd .docker && docker-compose exec php vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist

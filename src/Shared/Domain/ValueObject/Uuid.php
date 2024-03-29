@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObject;
 
@@ -11,6 +10,11 @@ final class Uuid implements Stringable
     public function __construct(protected string $value)
     {
         $this->isValidUuid($this->value);
+    }
+
+    public static function from(string $value): self
+    {
+        return new self($value);
     }
 
     public function value(): string

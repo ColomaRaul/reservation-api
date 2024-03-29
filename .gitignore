@@ -8,4 +8,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-.docker/.env
+/.docker/.env
+
+.idea

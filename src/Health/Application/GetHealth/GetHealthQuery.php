@@ -1,0 +1,17 @@
+<?php declare(strict_types=1);
+
+namespace App\Health\Application\GetHealth;
+
+use App\Shared\Application\Query\QueryInterface;
+
+final class GetHealthQuery implements QueryInterface
+{
+    public function __construct()
+    {
+    }
+
+    public static function from(): self
+    {
+        return new self();
+    }
+}

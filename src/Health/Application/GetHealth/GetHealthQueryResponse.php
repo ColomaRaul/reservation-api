@@ -10,9 +10,9 @@ final class GetHealthQueryResponse implements QueryResponseInterface
     {
     }
 
-    public function response(): string
+    public function response(): array
     {
-        return $this->value;
+        return ['value' => $this->value];
     }
 
     public static function from(string $value): self

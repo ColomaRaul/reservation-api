@@ -1,0 +1,4 @@
+GetReservationByHotelAndNumberRoom:
+  path: /reservation/{hotelId}/{roomNumber}
+  controller: App\Reservation\Infrastructure\Api\ReservationByHotelIdAndRoomNumberController
+  methods: [ GET ]

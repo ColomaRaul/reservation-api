@@ -14,7 +14,7 @@ final class HealthController extends AbstractApiController
             $result = $this->ask(GetHealthQuery::from());
 
             return new JsonResponse([
-                'data' => $result->response(),
+                'data' => $result->response()['value'],
                 'code' => 200,
             ], 200);
         } catch (\Throwable $e) {

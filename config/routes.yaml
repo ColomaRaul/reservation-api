@@ -1,3 +1,7 @@
+Homepage:
+    path: /
+    controller: App\Shared\Infrastructure\Api\HomepageController
+
 Health:
     prefix: /api/v1
     resource: ../src/Health/Infrastructure/Api/routes.yaml

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Reservation\Domain\Reservation" table="reservation">
+        <id name="id" type="App\Shared\Infrastructure\Orm\UuidType" />
+        <field name="hotelId" type="App\Shared\Infrastructure\Orm\UuidType"/>
+        <field name="locator"/>
+        <field name="roomNumber"/>
+        <field name="checkIn" type="App\Shared\Infrastructure\Orm\DateTimeType"/>
+        <field name="checkOut" type="App\Shared\Infrastructure\Orm\DateTimeType"/>
+        <field name="numberOfNights" type="integer"/>
+        <field name="totalPax" type="integer"/>
+        <field name="guests" type="App\Reservation\Infrastructure\Orm\ReservationGuestsType"/>
+    </entity>
+</doctrine-mapping>

@@ -14,10 +14,28 @@ final class Reservation
         private string $roomNumber,
         private \DateTimeImmutable $checkIn,
         private \DateTimeImmutable $checkOut,
-        private int $numberOfNights,
-        private int $totalPax,
         private GuestCollection $guests
     ) {
+    }
+
+    public static function from(
+        Uuid $id,
+        Uuid $hotelId,
+        string $locator,
+        string $roomNumber,
+        \DateTimeImmutable $checkIn,
+        \DateTimeImmutable $checkOut,
+        GuestCollection $guests
+    ): self {
+        return new self(
+            $id,
+            $hotelId,
+            $locator,
+            $roomNumber,
+            $checkIn,
+            $checkOut,
+            $guests
+        );
     }
 
     public function id(): Uuid
@@ -48,16 +66,6 @@ final class Reservation
     public function checkOut(): \DateTimeImmutable
     {
         return $this->checkOut;
-    }
-
-    public function numberOfNights(): int
-    {
-        return $this->numberOfNights;
-    }
-
-    public function totalPax(): int
-    {
-        return $this->totalPax;
     }
 
     public function guests(): GuestCollection

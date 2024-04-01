@@ -29,3 +29,8 @@ services:
         class: App\Hotel\Infrastructure\Repository\PostgresHotelProviderRelationRepository
         arguments:
             - '@doctrine.orm.default_entity_manager'
+
+    App\Reservation\Infrastructure\Repository\PostgresReservationRepository:
+        class: App\Reservation\Infrastructure\Repository\PostgresReservationRepository
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

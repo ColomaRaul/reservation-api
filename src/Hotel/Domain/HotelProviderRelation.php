@@ -9,16 +9,16 @@ final class HotelProviderRelation
     public function __construct(
         private readonly Uuid $hotelId,
         private readonly Uuid $providerId,
-        private readonly string $providerCode
+        private readonly string $providerHotelCode
     ) {
     }
 
     public static function from(
         Uuid $hotelId,
         Uuid $providerId,
-        string $providerCode
+        string $providerHotelCode
     ): self {
-        return new self($hotelId, $providerId, $providerCode);
+        return new self($hotelId, $providerId, $providerHotelCode);
     }
 
     public function hotelId(): Uuid
@@ -31,8 +31,8 @@ final class HotelProviderRelation
         return $this->providerId;
     }
 
-    public function providerCode(): string
+    public function providerHotelCode(): string
     {
-        return $this->providerCode;
+        return $this->providerHotelCode;
     }
 }

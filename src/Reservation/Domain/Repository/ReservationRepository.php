@@ -11,4 +11,6 @@ interface ReservationRepository
     public function save(Reservation $reservation): void;
 
     public function byHotelAndRoomNumber(string $roomNumber, HotelProviderRelation $hotelProviderRelation): ?Reservation;
+
+    public function byLocator(string $locator): ?Reservation;
 }

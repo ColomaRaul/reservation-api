@@ -4,6 +4,7 @@ namespace App\Reservation\Infrastructure\Repository;
 
 use App\Hotel\Domain\HotelProviderRelation;
 use App\Hotel\Domain\Repository\HotelProviderRelationRepository;
+use App\Reservation\Domain\Event\NewReservationProviderFoundedEvent;
 use App\Reservation\Domain\Model\ReservationProvider;
 use App\Reservation\Domain\Repository\ReservationProviderRepository;
 use App\Reservation\Domain\Repository\ReservationRepository;
@@ -11,13 +12,14 @@ use App\Reservation\Domain\Reservation;
 use App\Reservation\Domain\ValueObject\Guest;
 use App\Reservation\Domain\ValueObject\GuestCollection;
 use App\Shared\Domain\ValueObject\Uuid;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class ReservationRepositoryDecorator implements ReservationRepository
 {
     public function __construct(
         private readonly ReservationRepository $dbRepository,
         private readonly ReservationProviderRepository $reservationProviderRepository,
-        private readonly HotelProviderRelationRepository $hotelProviderRelationRepository,
+        private readonly EventDispatcherInterface $eventDispatcher
     ) {
     }
 
@@ -65,9 +67,14 @@ final class ReservationRepositoryDecorator implements ReservationRepository
                 );
             }
 
-            //Lauch event to save( newReservationsFoundedEvent )
+            $this->eventDispatcher->dispatch(NewReservationProviderFoundedEvent::from($reservationProvider));
         }
 
         return $reservation;
+    }
+
+    public function byLocator(string $locator): ?Reservation
+    {
+        return $this->dbRepository->byLocator($locator);
     }
 }

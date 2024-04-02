@@ -27,4 +27,11 @@ final class PostgresReservationRepository implements ReservationRepository
             'roomNumber' => $roomNumber,
         ]);
     }
+
+    public function byLocator(string $locator): ?Reservation
+    {
+        return $this->em->getRepository(Reservation::class)->findOneBy([
+            'locator' => $locator
+        ]);
+    }
 }

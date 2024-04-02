@@ -20,6 +20,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    # EVENTS
+    Symfony\Component\EventDispatcher\EventDispatcherInterface: '@event_dispatcher'
+
+
     # REPOSITORIES
     App\Hotel\Domain\Repository\HotelRepository:
         class: App\Hotel\Infrastructure\Repository\PostgresHotelRepository
@@ -46,7 +50,7 @@ services:
         arguments:
             - '@App\Reservation\Infrastructure\Repository\PostgresReservationRepository'
             - '@App\Reservation\Domain\Repository\ReservationProviderRepository'
-            - '@App\Hotel\Domain\Repository\HotelProviderRelationRepository'
+            - '@event_dispatcher'
 
     #SERVICES
     App\Reservation\Domain\Service\ReservationByHotelIdAndRoomService:
@@ -60,4 +64,10 @@ services:
         arguments:
             - '@App\Reservation\Infrastructure\Repository\PMSReservationProviderRepository'
             - '@App\Reservation\Infrastructure\Repository\PostgresReservationRepository'
+            - '@App\Hotel\Domain\Repository\HotelProviderRelationRepository'
+
+    App\Reservation\Domain\Service\ReservationCreatorService:
+        class: App\Reservation\Domain\Service\ReservationCreatorService
+        arguments:
+            - '@App\Reservation\Infrastructure\Repository\ReservationRepositoryDecorator'
             - '@App\Hotel\Domain\Repository\HotelProviderRelationRepository'

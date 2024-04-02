@@ -4,6 +4,7 @@ namespace App\Reservation\Infrastructure\Repository;
 
 use App\Reservation\Domain\Repository\ReservationRepository;
 use App\Reservation\Domain\Reservation;
+use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class PostgresReservationRepository implements ReservationRepository
@@ -16,5 +17,13 @@ final class PostgresReservationRepository implements ReservationRepository
     {
         $this->em->persist($reservation);
         $this->em->flush();
+    }
+
+    public function byHotelIdAndRoomNumber(Uuid $hotelId, string $roomNumber): ?Reservation
+    {
+        return $this->em->getRepository(Reservation::class)->findOneBy([
+            'hotelId' => $hotelId->value(),
+            'roomNumber' => $roomNumber,
+        ]);
     }
 }

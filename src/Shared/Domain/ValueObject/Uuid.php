@@ -17,6 +17,11 @@ final class Uuid implements Stringable
         return new self($value);
     }
 
+    public static function random(): self
+    {
+        return new self(RamseyUuid::uuid4()->toString());
+    }
+
     public function value(): string
     {
         return $this->value;

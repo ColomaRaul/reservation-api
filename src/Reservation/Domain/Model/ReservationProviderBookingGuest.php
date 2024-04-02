@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Reservation\Domain\ValueObject;
+namespace App\Reservation\Domain\Model;
 
-final class Guest
+final class ReservationProviderBookingGuest
 {
     public function __construct(
         private string $name,
@@ -10,7 +10,7 @@ final class Guest
         private \DateTimeImmutable $birthdate,
         private string $passport,
         private string $country,
-    ){
+    ) {
     }
 
     public static function from(
@@ -18,7 +18,7 @@ final class Guest
         string $lastname,
         \DateTimeImmutable $birthdate,
         string $passport,
-        string $country,
+        string $country
     ): self {
         return new self($name, $lastname, $birthdate, $passport, $country);
     }
@@ -52,7 +52,7 @@ final class Guest
     {
         return [
             'name' => $this->name(),
-            'lastName' => $this->lastname(),
+            'lastname' => $this->lastname(),
             'birthdate' => $this->birthdate()->format('Y-m-d'),
             'passport' => $this->passport(),
             'country' => $this->country(),

@@ -18,6 +18,11 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            pms.client:
+                base_uri: '%env(PMS_BASE_URL)%'
+
 when@test:
     framework:
         test: true

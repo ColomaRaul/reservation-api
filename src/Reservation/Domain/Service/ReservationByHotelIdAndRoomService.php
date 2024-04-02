@@ -10,6 +10,8 @@ use App\Shared\Domain\ValueObject\Uuid;
 
 final class ReservationByHotelIdAndRoomService
 {
+    private const DEFAULT_PROVIDER_ID = '899406cc-f757-42d5-8cd8-165fb5e57a60';
+
     public function __construct(
         private ReservationRepository $reservationRepository,
         private HotelProviderRelationRepository $hotelProviderRelationRepository,
@@ -18,8 +20,7 @@ final class ReservationByHotelIdAndRoomService
 
     public function reservationByHotelIdAndRoomNumber(Uuid $hotelId, string $roomNumber): ?Reservation
     {
-        // TODO update provider id
-        $providerId = Uuid::from('899406cc-f757-42d5-8cd8-165fb5e57a60');
+        $providerId = Uuid::from(self::DEFAULT_PROVIDER_ID);
 
         $hotelProviderRelation = $this->hotelProviderRelationRepository->byHotelIdAndProviderId($hotelId, $providerId);
 

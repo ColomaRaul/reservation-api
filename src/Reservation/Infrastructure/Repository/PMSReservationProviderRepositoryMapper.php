@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Reservation\Infrastructure\External;
+namespace App\Reservation\Infrastructure\Repository;
 
 use App\Reservation\Domain\Model\ReservationProvider;
 use App\Reservation\Domain\Model\ReservationProviderBooking;
-use App\Reservation\Domain\Model\ReservationProviderBookingPax;
 use App\Reservation\Domain\Model\ReservationProviderBookingCollection;
 use App\Reservation\Domain\Model\ReservationProviderBookingGuest;
+use App\Reservation\Domain\Model\ReservationProviderBookingPax;
 use App\Reservation\Domain\Model\ReservationProviderData;
 
 final class PMSReservationProviderRepositoryMapper

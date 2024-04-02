@@ -17,7 +17,7 @@ final class ImportAllActiveReservationsService
 {
     public function __construct(
         private ReservationProviderRepository $reservationProviderRepository,
-        private ReservationRepository         $reservationRepository,
+        private ReservationRepository $reservationRepository,
         private HotelProviderRelationRepository $hotelProviderRelationRepository,
     ) {
     }

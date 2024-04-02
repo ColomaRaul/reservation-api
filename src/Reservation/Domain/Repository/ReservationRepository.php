@@ -2,6 +2,7 @@
 
 namespace App\Reservation\Domain\Repository;
 
+use App\Hotel\Domain\HotelProviderRelation;
 use App\Reservation\Domain\Reservation;
 use App\Shared\Domain\ValueObject\Uuid;
 
@@ -9,5 +10,5 @@ interface ReservationRepository
 {
     public function save(Reservation $reservation): void;
 
-    public function byHotelIdAndRoomNumber(Uuid $hotelId, string $roomNumber): ?Reservation;
+    public function byHotelAndRoomNumber(string $roomNumber, HotelProviderRelation $hotelProviderRelation): ?Reservation;
 }

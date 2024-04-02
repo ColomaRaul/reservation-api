@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Reservation\Infrastructure\External;
+namespace App\Reservation\Infrastructure\Repository;
 
 use App\Reservation\Domain\Model\ReservationProviderData;
 use App\Reservation\Domain\Repository\ReservationProviderRepository;

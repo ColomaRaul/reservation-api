@@ -2,6 +2,7 @@
 
 namespace App\Reservation\Infrastructure\Repository;
 
+use App\Hotel\Domain\HotelProviderRelation;
 use App\Reservation\Domain\Repository\ReservationRepository;
 use App\Reservation\Domain\Reservation;
 use App\Shared\Domain\ValueObject\Uuid;
@@ -19,10 +20,10 @@ final class PostgresReservationRepository implements ReservationRepository
         $this->em->flush();
     }
 
-    public function byHotelIdAndRoomNumber(Uuid $hotelId, string $roomNumber): ?Reservation
+    public function byHotelAndRoomNumber(string $roomNumber, HotelProviderRelation $hotelProviderRelation): ?Reservation
     {
         return $this->em->getRepository(Reservation::class)->findOneBy([
-            'hotelId' => $hotelId->value(),
+            'hotelId' => $hotelProviderRelation->hotelId()->value(),
             'roomNumber' => $roomNumber,
         ]);
     }

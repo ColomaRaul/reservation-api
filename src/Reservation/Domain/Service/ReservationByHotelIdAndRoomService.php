@@ -3,7 +3,6 @@
 namespace App\Reservation\Domain\Service;
 
 use App\Hotel\Domain\Repository\HotelProviderRelationRepository;
-use App\Hotel\Domain\Repository\HotelRepository;
 use App\Reservation\Domain\Repository\ReservationRepository;
 use App\Reservation\Domain\Reservation;
 use App\Shared\Domain\ValueObject\Uuid;
@@ -28,14 +27,6 @@ final class ReservationByHotelIdAndRoomService
             return null;
         }
 
-        $reservation = $this->reservationRepository->byHotelIdAndRoomNumber($hotelId, $roomNumber);
-
-        if (null !== $reservation) {
-            return $reservation;
-        }
-
-        // Check in the web again
-
-        return null;
+        return $this->reservationRepository->byHotelAndRoomNumber($roomNumber, $hotelProviderRelation);
     }
 }

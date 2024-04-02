@@ -20,6 +20,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    # REPOSITORIES
     App\Hotel\Domain\Repository\HotelRepository:
         class: App\Hotel\Infrastructure\Repository\PostgresHotelRepository
         arguments:
@@ -34,3 +35,29 @@ services:
         class: App\Reservation\Infrastructure\Repository\PostgresReservationRepository
         arguments:
             - '@doctrine.orm.default_entity_manager'
+
+    App\Reservation\Domain\Repository\ReservationProviderRepository:
+        class: App\Reservation\Infrastructure\Repository\PMSReservationProviderRepository
+        arguments:
+            - '@pms.client'
+
+    App\Reservation\Infrastructure\Repository\ReservationRepositoryDecorator:
+        class: App\Reservation\Infrastructure\Repository\ReservationRepositoryDecorator
+        arguments:
+            - '@App\Reservation\Infrastructure\Repository\PostgresReservationRepository'
+            - '@App\Reservation\Domain\Repository\ReservationProviderRepository'
+            - '@App\Hotel\Domain\Repository\HotelProviderRelationRepository'
+
+    #SERVICES
+    App\Reservation\Domain\Service\ReservationByHotelIdAndRoomService:
+        class: App\Reservation\Domain\Service\ReservationByHotelIdAndRoomService
+        arguments:
+            - '@App\Reservation\Infrastructure\Repository\ReservationRepositoryDecorator'
+            - '@App\Hotel\Domain\Repository\HotelProviderRelationRepository'
+
+    App\Reservation\Domain\Service\ImportAllActiveReservationsService:
+        class: App\Reservation\Domain\Service\ImportAllActiveReservationsService
+        arguments:
+            - '@App\Reservation\Infrastructure\Repository\PMSReservationProviderRepository'
+            - '@App\Reservation\Infrastructure\Repository\PostgresReservationRepository'
+            - '@App\Hotel\Domain\Repository\HotelProviderRelationRepository'

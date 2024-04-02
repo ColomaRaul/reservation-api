@@ -13,10 +13,11 @@ final class PMSReservationProviderRepositoryMapper
 {
     public static function map(array $items): ReservationProviderData
     {
-        $total = $items['total'];
+        $total = $items['total'] ?? 0;
         $bookings = ReservationProviderBookingCollection::from([]);
+        $itemsBookings = $items['bookings'] ?? [];
 
-        foreach ($items['bookings'] as $item) {
+        foreach ($itemsBookings as $item) {
             $bookingGuest = ReservationProviderBookingGuest::from(
                 $item['guest']['name'],
                 $item['guest']['lastname'],

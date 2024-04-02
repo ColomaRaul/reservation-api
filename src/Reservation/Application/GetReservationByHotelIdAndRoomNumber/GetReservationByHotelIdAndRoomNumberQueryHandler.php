@@ -17,6 +17,10 @@ final class GetReservationByHotelIdAndRoomNumberQueryHandler
     {
         $reservation = $this->service->reservationByHotelIdAndRoomNumber($query->hotelId(), $query->roomNumber());
 
+        if (null === $reservation) {
+            return GetReservationByHotelIdAndRoomNumberQueryResponse::fromArray([]);
+        }
+
         return GetReservationByHotelIdAndRoomNumberQueryResponse::fromReservation($reservation);
     }
 }

@@ -14,7 +14,7 @@ final class PMSReservationProviderRepository implements ReservationProviderRepos
     {
     }
 
-    public function all(): ReservationProviderData
+    public function byTimestamp(string $timestamp = '0'): ReservationProviderData
     {
         try {
             $response = $this->pmsClient->request(
@@ -22,14 +22,14 @@ final class PMSReservationProviderRepository implements ReservationProviderRepos
                 self::PMS_FAKE_TESTS_URL,
                 [
                     'query' => [
-                        'ts' => '0'
+                        'ts' => $timestamp
                     ]
                 ],
             );
 
             return PMSReservationProviderRepositoryMapper::map($response->toArray());
         } catch (\Exception $e) {
-            return [];
+            return PMSReservationProviderRepositoryMapper::map([]);
         }
     }
 }

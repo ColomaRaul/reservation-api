@@ -16,7 +16,7 @@ final class GetReservationByHotelIdAndRoomNumberQueryResponse implements QueryRe
         return $this->params;
     }
 
-    public static function from(array $params): self
+    public static function fromArray(array $params): self
     {
         return new self($params);
     }

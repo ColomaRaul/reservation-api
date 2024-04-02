@@ -14,6 +14,7 @@ final class Reservation
         private string $roomNumber,
         private \DateTimeImmutable $checkIn,
         private \DateTimeImmutable $checkOut,
+        private \DateTimeImmutable $created,
         private GuestCollection $guests
     ) {
     }
@@ -25,6 +26,7 @@ final class Reservation
         string $roomNumber,
         \DateTimeImmutable $checkIn,
         \DateTimeImmutable $checkOut,
+        \DateTimeImmutable $created,
         GuestCollection $guests
     ): self {
         return new self(
@@ -34,6 +36,7 @@ final class Reservation
             $roomNumber,
             $checkIn,
             $checkOut,
+            $created,
             $guests
         );
     }
@@ -66,6 +69,11 @@ final class Reservation
     public function checkOut(): \DateTimeImmutable
     {
         return $this->checkOut;
+    }
+
+    public function created(): \DateTimeImmutable
+    {
+        return $this->created;
     }
 
     public function guests(): GuestCollection

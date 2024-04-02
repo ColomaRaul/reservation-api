@@ -24,7 +24,7 @@ final class ImportAllActiveReservationsService
 
     public function import(): ReservationProviderData
     {
-        $data = $this->reservationProviderRepository->all();
+        $data = $this->reservationProviderRepository->byTimestamp();
 
         $allHotelProviderRelation = [];
         foreach ($this->hotelProviderRelationRepository->all() as $hotelProviderRelation) {
@@ -43,6 +43,7 @@ final class ImportAllActiveReservationsService
                 $reservationProvider->booking()->room(),
                 $reservationProvider->booking()->checkIn(),
                 $reservationProvider->booking()->checkOut(),
+                $reservationProvider->created(),
                 $guestCollection,
             );
 

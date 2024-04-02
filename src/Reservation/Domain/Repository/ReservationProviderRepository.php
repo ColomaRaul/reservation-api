@@ -6,5 +6,5 @@ use App\Reservation\Domain\Model\ReservationProviderData;
 
 interface ReservationProviderRepository
 {
-    public function all(): ReservationProviderData;
+    public function byTimestamp(string $timestamp): ReservationProviderData;
 }

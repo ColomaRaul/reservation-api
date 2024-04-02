@@ -20,6 +20,10 @@ final class UuidType extends StringType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
+        if ($value instanceof Uuid) {
+            return $value->value();
+        }
+
         return $value;
     }
 }

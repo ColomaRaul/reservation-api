@@ -11,6 +11,7 @@
         <field name="roomNumber"/>
         <field name="checkIn" type="App\Shared\Infrastructure\Orm\DateTimeType"/>
         <field name="checkOut" type="App\Shared\Infrastructure\Orm\DateTimeType"/>
+        <field name="created" type="App\Shared\Infrastructure\Orm\DateTimeType"/>
         <field name="guests" type="App\Reservation\Infrastructure\Orm\ReservationGuestsType"/>
     </entity>
 </doctrine-mapping>

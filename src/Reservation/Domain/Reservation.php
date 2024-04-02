@@ -72,4 +72,31 @@ final class Reservation
     {
         return $this->guests;
     }
+
+    public function numberOfNights(): int
+    {
+        $diff = $this->checkOut()->diff($this->checkIn());
+
+        return $diff->d;
+    }
+
+    public function totalPax(): int
+    {
+        return $this->guests()->count();
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'bookingId' => $this->id()->value(),
+            'hotel' => $this->hotelId()->value(),
+            'locator' => $this->locator(),
+            'room' => $this->roomNumber(),
+            'checkIn' => $this->checkIn->format('Y-m-d'),
+            'checkOut' => $this->checkOut->format('Y-m-d'),
+            'numberOfNights' => $this->numberOfNights(),
+            'totalPax' => $this->totalPax(),
+            'guests' => $this->guests->toArray(),
+        ];
+    }
 }

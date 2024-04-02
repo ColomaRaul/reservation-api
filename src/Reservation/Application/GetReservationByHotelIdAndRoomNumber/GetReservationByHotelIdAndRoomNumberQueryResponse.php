@@ -2,6 +2,7 @@
 
 namespace App\Reservation\Application\GetReservationByHotelIdAndRoomNumber;
 
+use App\Reservation\Domain\Reservation;
 use App\Shared\Application\Query\QueryResponseInterface;
 
 final class GetReservationByHotelIdAndRoomNumberQueryResponse implements QueryResponseInterface
@@ -18,5 +19,10 @@ final class GetReservationByHotelIdAndRoomNumberQueryResponse implements QueryRe
     public static function from(array $params): self
     {
         return new self($params);
+    }
+
+    public static function fromReservation(Reservation $reservation): self
+    {
+        return new self($reservation->toArray());
     }
 }

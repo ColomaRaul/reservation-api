@@ -32,7 +32,6 @@ final class ReservationCreatorService
                 \DateTimeImmutable::createFromFormat('Y-m-d', $guest['birthdate']),
                 $guest['passport'],
                 $guest['country'],
-                $guest['age'],
             );
         }
 

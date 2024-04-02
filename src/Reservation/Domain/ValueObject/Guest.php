@@ -48,6 +48,14 @@ final class Guest
         return $this->country;
     }
 
+    public function age(): int
+    {
+        $now = new \DateTimeImmutable();
+        $diff = $now->diff($this->birthdate());
+
+        return $diff->y;
+    }
+
     public function toArray(): array
     {
         return [
@@ -56,6 +64,7 @@ final class Guest
             'birthdate' => $this->birthdate()->format('Y-m-d'),
             'passport' => $this->passport(),
             'country' => $this->country(),
+            'age' => $this->age(),
         ];
     }
 }

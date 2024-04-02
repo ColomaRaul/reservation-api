@@ -27,6 +27,11 @@ final class GuestCollection extends Collection
         $this->items[] = $guest;
     }
 
+    public function count(): int
+    {
+        return count($this->items);
+    }
+
     public function toArray(): array
     {
         return array_map(function(Guest $guest) {

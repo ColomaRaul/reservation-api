@@ -29,8 +29,12 @@ final class ReservationByHotelIdAndRoomService
 
         $reservation = $this->reservationRepository->byHotelIdAndRoomNumber($hotelId, $roomNumber);
 
-        if (null === $reservation) {
-
+        if (null !== $reservation) {
+            return $reservation;
         }
+
+        // Check in the web again
+
+        return null;
     }
 }

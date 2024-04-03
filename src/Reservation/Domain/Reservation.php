@@ -29,6 +29,8 @@ final class Reservation
         \DateTimeImmutable $created,
         GuestCollection $guests
     ): self {
+        self::validateDates($checkIn, $checkOut);
+
         return new self(
             $id,
             $hotelId,
@@ -39,6 +41,13 @@ final class Reservation
             $created,
             $guests
         );
+    }
+
+    public static function validateDates(\DateTimeImmutable $checkIn, \DateTimeImmutable $checkOut): void
+    {
+        if ($checkIn->getTimestamp() > $checkOut->getTimestamp()) {
+            throw new \InvalidArgumentException('The check-in date cannot be after the check-out date.');
+        }
     }
 
     public function id(): Uuid

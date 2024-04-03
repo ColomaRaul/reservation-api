@@ -7,7 +7,7 @@ use App\Reservation\Domain\Repository\ReservationRepository;
 use App\Reservation\Domain\Reservation;
 use App\Shared\Domain\ValueObject\Uuid;
 
-final class ReservationByHotelIdAndRoomService
+class ReservationByHotelIdAndRoomService
 {
     private const DEFAULT_PROVIDER_ID = '899406cc-f757-42d5-8cd8-165fb5e57a60';
 

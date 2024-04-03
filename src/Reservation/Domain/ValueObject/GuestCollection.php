@@ -22,11 +22,6 @@ final class GuestCollection extends Collection
         return new self($items);
     }
 
-    public static function fromArray(array $items): self
-    {
-
-    }
-
     public function add(Guest $guest): void
     {
         $this->items[] = $guest;

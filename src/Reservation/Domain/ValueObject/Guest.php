@@ -60,7 +60,7 @@ final class Guest
     {
         return [
             'name' => $this->name(),
-            'lastName' => $this->lastname(),
+            'lastname' => $this->lastname(),
             'birthdate' => $this->birthdate()->format('Y-m-d'),
             'passport' => $this->passport(),
             'country' => $this->country(),

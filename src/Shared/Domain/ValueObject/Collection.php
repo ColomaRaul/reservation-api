@@ -4,7 +4,7 @@ namespace App\Shared\Domain\ValueObject;
 
 abstract class Collection implements \IteratorAggregate
 {
-    protected array $items;
+    protected array $items = [];
 
     public function getIterator(): \Traversable
     {
